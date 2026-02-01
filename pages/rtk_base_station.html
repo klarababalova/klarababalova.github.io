@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>RTK Base Station</title>
+  <meta name="description" content="Portable GNSS RTK base station featuring a modular 3D-printed case, integrated Li-ion battery, Arduino Nano control, and long-range LoRa communication. Completed project."/>
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <link rel="stylesheet" href="../assets/css/custom.css"/>
+  <!-- Font Awesome 6 -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="inner">
+      <h1>RTK Base Station</h1>
+      <a href="../index.html" class="home-icon" aria-label="Go back to Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO / Overview -->
+  <section class="wrapper style3 special" id="overview">
+    <div class="inner">
+      <header class="major">
+        <h2>Project Overview</h2>
+        <p>Portable GNSS RTK base station for drone-grade, centimeter-level positioning.</p>
+        <p><em>Status:</em> <strong>Version I Completed — Version II in Progress</strong></p>
+      </header>
+
+      <p class="actions" style="margin-top:1rem;">
+        <a class="button primary" href="#hardware" aria-label="Jump to Hardware">Hardware</a>
+        <a class="button primary" href="#power" aria-label="Jump to Power">Power</a>
+        <a class="button primary" href="#wiring" aria-label="Jump to Wiring">Wiring</a>
+        <a class="button primary" href="#gallery" aria-label="Jump to Gallery">Gallery</a>
+        <a class="button primary" href="#acknowledgment" aria-label="Jump to Acknowledgment">Ack</a>
+        <a class="button primary" href="#status" aria-label="Jump to Status">Status</a>
+      </p>
+
+      <div class="icon-links" aria-label="External links">
+        <!--
+        <a class="icon-link" href="#" target="_blank" rel="noopener" aria-label="GitHub repository">
+          <i class="fa-brands fa-github"></i><span>GitHub</span>
+        </a>
+        <a class="icon-link" href="#" target="_blank" rel="noopener" aria-label="Notion page"> 
+          <i class="fa-regular fa-note-sticky"></i><span>Notion</span>
+        </a>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- At a Glance -->
+  <section class="wrapper style2" id="glance">
+    <div class="inner">
+      <header class="major">
+        <h2>At a Glance</h2>
+      </header>
+      <p>The <strong>RTK Base Station</strong> acts as a <strong>ground reference system</strong> transmitting RTK correction data to drones or mobile rovers to reach <strong>centimeter-level positioning accuracy</strong>.</p>
+      <p>The final design includes a <strong>3-part modular enclosure</strong> (Top, Middle, Bottom), housing all electronics, a <strong>rechargeable 18650 Li-ion pack</strong>, and a <strong>metal power button</strong> with LED indicator. The unit mounts directly on a tripod via a standard thread adapter.</p>
+    </div>
+  </section>
+
+  <!-- Main Features -->
+  <section class="wrapper style2" id="features">
+    <div class="inner">
+      <header class="major"><h2>Main Features</h2></header>
+
+      <div class="grid-3">
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+          <h3>GNSS Front-End</h3>
+          <p>CubePilot Here4 Base (u-blox NEO-F9P) with external CS7624A antenna for high-precision multi-band reception.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-tower-cell"></i></div>
+          <h3>LoRa Communication</h3>
+          <p>Ebyte E220-900T22D module running at 900&nbsp;MHz to broadcast RTCM corrections over long range.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Integrated Power</h3>
+          <p>IP5310 (LX-LBC3.1) charger + boost module powering the system from 4&nbsp;×&nbsp;18650 cells with external USB-C and illuminated button.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hardware -->
+  <section class="wrapper style2" id="hardware">
+    <div class="inner">
+      <header class="major"><h2>Hardware</h2></header>
+
+      <div class="grid-3">
+        <article class="card"><h3><i class="fa-solid fa-microchip"></i> Controller</h3>
+          <p>Arduino Nano manages UART communication and automatically triggers the <em>Survey-In</em> process on the Here4Base at startup.</p>
+        </article>
+        <article class="card"><h3><i class="fa-solid fa-screwdriver-wrench"></i> Enclosure</h3>
+          <p>Three 3D-printed parts: <strong>Bottom</strong> (Here4Base + radio), <strong>Middle</strong> (battery + charger), and <strong>Top</strong> (antenna mount). Quick tripod attachment underneath.</p>
+        </article>
+        <article class="card"><h3><i class="fa-solid fa-battery-full"></i> Power Components</h3>
+          <p>IP5310 charger + boost module, LM2596 step-down (5 → 3.3&nbsp;V), illuminated power button, and visible charge LEDs through the case window.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- System Diagram -->
+  <section class="wrapper style2" id="diagram">
+    <div class="inner">
+      <header class="major"><h2>System Diagram</h2></header>
+      <figure style="text-align:center;">
+        <img src="../pics/scheme.png" alt="RTK Base Station functional wiring diagram with IP5310, LM2596, LoRa module, Arduino Nano, and Here4Base connections" style="max-width:800px;width:100%;border-radius:8px;box-shadow:0 0 15px rgba(0,0,0,.25);">
+        <figcaption style="margin-top:.5rem;opacity:.8;">Functional electrical diagram of the RTK Base Station (IP5310, LM2596, LoRa module, Arduino Nano, and Here4Base).</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Power -->
+  <section class="wrapper style2" id="power">
+    <div class="inner">
+      <header class="major"><h2>Power</h2></header>
+      <p>The system is powered by <strong>four 18650 Li-ion cells</strong> connected to the <strong>IP5310 charger + boost board</strong>, providing 5&nbsp;V output. The 5&nbsp;V rail feeds both the Here4Base and Arduino Nano, while the <strong>LM2596 regulator</strong> generates 3.3&nbsp;V for the LoRa radio.</p>
+      <p>The illuminated <strong>metal button</strong> toggles the 5&nbsp;V boost output, and its LED ring is powered from the same rail.</p>
+      <ul>
+        <li>USB-C for charging and data access</li>
+        <li>Integrated power-path allows operation while charging</li>
+        <li>Battery status visible through case window</li>
+        <li>USB port at base enables charging via powerbank</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Wiring -->
+  <section class="wrapper style2" id="wiring">
+    <div class="inner">
+      <header class="major"><h2>Wiring</h2></header>
+      <div class="grid-3">
+        <article class="card">
+          <h3><i class="fa-solid fa-plug"></i> Serial</h3>
+          <ul>
+            <li>Arduino Nano ↔ Here4Base (UART + GND)</li>
+            <li>Here4Base ↔ LoRa (E220) (3.3&nbsp;V UART link)</li>
+            <li>Shared GND across all modules</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-tower-broadcast"></i> RF</h3>
+          <ul>
+            <li>CS7624A antenna connected via 30&nbsp;cm coax (TNC→SMA)</li>
+            <li>LoRa antenna mounted externally on bottom case</li>
+            <li>Ensure both antennas are connected before power-on</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-triangle-exclamation"></i> Notes</h3>
+          <ul>
+            <li>Button of IP5310 board removed to use external metal switch</li>
+            <li>LED ring wired to IP5310 load output</li>
+            <li>Verify LM2596 set to 3.3&nbsp;V before connecting LoRa module</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOM -->
+  <section class="wrapper style2" id="bom">
+    <div class="inner">
+      <header class="major"><h2>Components Summary</h2></header>
+      <ul>
+        <li>Here4 Base (u-blox F9P) receiver + CS7624A antenna</li>
+        <li>Arduino Nano</li>
+        <li>E220-900T22D LoRa module + external SMA antenna</li>
+        <li>IP5310 charger + boost (LX-LBC3.1)</li>
+        <li>LM2596 step-down converter (5 → 3.3&nbsp;V)</li>
+        <li>4 × 18650 Li-ion cells + holder + metal power button</li>
+        <li>3D-printed enclosure (Top, Middle, Bottom case)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Status -->
+  <section class="wrapper style2 special" id="status">
+    <div class="inner">
+      <header class="major"><h2>Status</h2></header>
+      <p><strong>Version I:</strong> fully assembled, validated, and tested during field experiments, achieving stable centimeter-level accuracy in real drone localization setups.</p>
+      <p><strong>Version II:</strong> currently under development.</p>
+      <div class="progress" title="Overall progress"><span style="width:70%;" aria-hidden="true"></span></div>
+      <p style="margin-top:.5rem;opacity:.85;"><small>~70% — Version I complete, Version II design and planning ongoing.</small></p>
+    </div>
+  </section>
+
+<!-- GALLERY -->
+<section class="wrapper style2 special" id="gallery">
+  <div class="inner">
+    <header class="major">
+      <h2>Gallery</h2>
+      <p>Final assembly — renders and real prototype photos.</p>
+    </header>
+
+    <div class="grid-3" style="gap: 1.5rem;">
+      <figure class="image fit" style="margin:0;">
+        <img src="../pics/RTK_pic1.jpg" alt="RTK Base Station prototype front view on tripod" loading="lazy" style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
+        <figcaption style="margin-top:.5rem;opacity:.8;">Front view — assembled prototype with GNSS antenna on tripod</figcaption>
+      </figure>
+
+      <figure class="image fit" style="margin:0;">
+        <img src="../pics/RTK_pic2.jpg" alt="RTK Base Station side view" loading="lazy" style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
+        <figcaption style="margin-top:.5rem;opacity:.8;">Side view — base module and antenna connections</figcaption>
+      </figure>
+
+      <figure class="image fit" style="margin:0;">
+        <img src="../pics/RTK_pic3.jpg" alt="RTK Base Station internal electronics wiring" loading="lazy" style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
+        <figcaption style="margin-top:.5rem;opacity:.8;">Internal view — wiring of Arduino Nano, Here4Base, and LoRa module</figcaption>
+      </figure>
+
+      <figure class="image fit" style="margin:0;">
+        <img src="../pics/RTK_pic4.jpg" alt="RTK Base Station battery compartment" loading="lazy" style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
+        <figcaption style="margin-top:.5rem;opacity:.8;">Battery section — 4×18650 cells with USB-C charging module</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ACKNOWLEDGMENT -->
+  <section class="wrapper style2 special" id="acknowledgment">
+    <div class="inner">
+      <header class="major"><h2>Acknowledgment</h2></header>
+      <p style="max-width:700px;margin:0 auto;opacity:.9;">
+        The mechanical design of this RTK Base Station was inspired by 
+        <a href="https://burksbuilds.com/robotics/gnss-base-station/gnss-base-station-prototype/" 
+           target="_blank" rel="noopener noreferrer">Burks Builds — GNSS Base Station Prototype</a>.  
+        The referenced project provided the original 3D design foundation, which was adapted for the CubePilot Here4Base integration, power system, and LoRa communication module.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>&copy; Erik Mischiatti</li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
